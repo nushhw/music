@@ -64,12 +64,16 @@ function loadFolder(folder) {
     }
 
     menuBtn.onclick = (e) => {
-      e.stopPropagation();
-      document.querySelectorAll('.menu').forEach(m => m.style.display = "none");
-      menu.style.display = "block";
-      menu.style.left = e.pageX + "px";
-      menu.style.top = e.pageY + "px";
-    };
+  e.stopPropagation();
+  document.querySelectorAll('.menu').forEach(m => m.style.display = "none");
+  menu.style.display = "block";
+
+  const rect = menuBtn.getBoundingClientRect();
+  menu.style.position = "absolute";
+  menu.style.left = rect.left + "px";
+  menu.style.top = rect.bottom + "px";
+};
+
 
     card.onclick = () => {
       if (!track.file) {
