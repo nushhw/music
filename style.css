@@ -1,0 +1,105 @@
+/* style.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #121212;
+  color: #fff;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 220px;
+  background: #000;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-right: 1px solid #222;
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  color: #faff70;
+}
+
+.folder {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.folder:hover {
+  background-color: #1db954;
+  color: #000;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.track-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.track {
+  background: #1e1e1e;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 10px #faff70 inset;
+}
+
+.track:hover {
+  background: #faff70;
+  color: #000;
+}
+
+.player-bar {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: #181818;
+  border: 2px solid #faff70;
+  border-radius: 12px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 0 15px #faff70;
+  z-index: 1000;
+}
+
+.player-bar audio {
+  width: 240px;
+}
+
+.track-info {
+  color: #faff70;
+  font-size: 14px;
+  text-shadow: 0 0 5px #faff70;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
