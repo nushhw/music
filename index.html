@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Study Music Player</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    iframe {
+      margin-top: 20px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎶 Study Music Player</h1>
+  <button onclick="loadSong(0)">Lofi Chill</button>
+  <button onclick="loadSong(1)">Piano Focus</button>
+  <button onclick="loadSong(2)">Ambient Relax</button>
+
+  <div id="playerContainer">
+    <iframe id="player" width="560" height="315"
+            src="https://www.youtube.com/embed/1fu3Q1giB94"
+            allow="autoplay; encrypted-media" allowfullscreen>
+    </iframe>
+  </div>
+
+  <script>
+    const songs = [
+      "https://www.youtube.com/embed/1fu3Q1giB94", // dance of violins
+      "https://www.youtube.com/embed/MYncjKCMzAE", // Piano
+      "https://www.youtube.com/embed/2OEL4P1Rz04"  // Ambient
+    ];
+
+    function loadSong(index) {
+      document.getElementById("player").src = songs[index] + "?autoplay=1";
+    }
+  </script>
+
+</body>
+</html>
