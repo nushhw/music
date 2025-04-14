@@ -1,95 +1,166 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Neon Study Music Player</title>
-  <link rel="icon" type="image/png" href="logo.png">
+  <title>My Music Library</title>
+  <link rel="icon" href="logo.png">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0a0a0a;
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: #000;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      border-right: 1px solid #222;
+    }
+
+    .sidebar h2 {
+      font-size: 18px;
       color: #faff70;
-      text-align: center;
-      padding: 40px;
+    }
+
+    .folder {
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 5px;
+      transition: 0.2s;
+    }
+
+    .folder:hover {
+      background-color: #1db954;
+      color: #000;
+    }
+
+    .main {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
     }
 
     h1 {
-      font-size: 2.5em;
-      text-shadow: 0 0 10px #faff70, 0 0 20px #faff70;
+      font-size: 24px;
+      margin-bottom: 20px;
     }
 
-    button {
-      background-color: transparent;
-      border: 2px solid #faff70;
-      color: #faff70;
-      padding: 12px 24px;
-      margin: 8px;
-      font-size: 16px;
-      border-radius: 8px;
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .track {
+      background: #1e1e1e;
+      padding: 15px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      text-shadow: 0 0 5px #faff70;
+      transition: 0.3s;
+      text-align: center;
       box-shadow: 0 0 10px #faff70 inset;
     }
 
-    button:hover {
-      background-color: #faff70;
+    .track:hover {
+      background: #faff70;
       color: #000;
-      box-shadow: 0 0 20px #faff70, 0 0 40px #faff70 inset;
     }
 
     audio {
-      margin-top: 20px;
-      width: 80%;
-      filter: drop-shadow(0 0 10px #faff70);
+      position: absolute;
+      bottom: 10px;
+      left: 240px;
+      width: 70%;
+      box-shadow: 0 0 10px #faff70;
     }
 
-    #sourceInfo {
-      margin-top: 20px;
-      font-size: 16px;
-      color: #faff70;
-      text-shadow: 0 0 5px #faff70;
-    }
   </style>
 </head>
 <body>
 
-  <h1>🎧 Neon Study Music</h1>
+  <div class="sidebar">
+    <h2>🎵 Library</h2>
+    <div class="folder" onclick="loadFolder('Item Asylum')">🎮 Item Asylum</div>
+    <div class="folder" onclick="loadFolder('Lofi')">🌙 Lofi</div>
+    <div class="folder" onclick="loadFolder('Favorites')">⭐ Favorites</div>
+    <div class="folder" onclick="loadFolder('Kirby/Remix')">🍰 Kirby/Remix</div>
+    <div class="folder" onclick="loadFolder('Unavailable')">🚫 Not Downloaded</div>
+  </div>
 
-  <button onclick="playTrack(0)">Nice Music</button>
-  <button onclick="playTrack(1)">Study Lofi</button>
-  <button onclick="playTrack(2)">Soothing Piano (U/C)</button>
-  <button onclick="playTrack(3)">Paper rings</button>
-  <button onclick="playTrack(4)">IMTTJ</button>
+  <div class="main">
+    <h1 id="folderName">Select a Folder</h1>
+    <div class="track-grid" id="trackGrid"></div>
+  </div>
 
-  <br>
-  <audio id="player" controls>
-    <source src="F-777 - Dance of The Violins [1fu3Q1giB94].mp4" type="audio/mp4">
-    Your browser does not support the audio element.
-  </audio>
-
-  <div id="sourceInfo">Now playing: <b>Lofi Chill</b><br>Source: YouTube</div>
+  <audio id="player" controls></audio>
 
   <script>
-    const tracks = [
-  { name: "Dance of the violins", file: "music/F-777 - Dance of The Violins [1fu3Q1giB94].mp4", source: "Dance of the violins, yt" },
-  { name: "Study Lofi", file: "music/lofi hip hop mix radio-beat to relax⧸study too[10 min] [NsImQYDW8IA].mp4", source: "yt" },
-  { name: "Soothing Piano", file: "music/The Most Beautiful & Relaxing Piano Pieces (Vol. 1) [WJ3-F02-F_Y].f616.mp4", source: "yt" },
-  { name: "Paper Rings", file:"music/Taylor Swift - Paper Rings (Official Audio).mp3", source: "yt, taylor swift" },
-  { name: "I'm always mean to the jews", file:"", source: "yt, ruckaruckaali" },
-      { name: "BITE ME", file: "music/3_BM.mpeg", source: "Murder Drones Wiki/AJ DiSpirito, for testing purposes only"}
-];
+    const player = document.getElementById("player");
+    const folderName = document.getElementById("folderName");
+    const trackGrid = document.getElementById("trackGrid");
 
+    const library = {
+      "Item Asylum": [
+        { name: "Baseplate by Aden Mayo", file: "music/Baseplate by Aden Mayo.mp3" },
+        { name: "The Great Strategy", file: "music/The Great Strategy.mp3" },
+        { name: "Filibuster Invasion Theme", file: "" }
+      ],
+      "Lofi": [
+        { name: "Study Lofi", file: "music/lofi hip hop mix radio-beat to relax⧸study too[10 min] [NsImQYDW8IA].mp4" },
+        { name: "Cycerin - Winterbliss", file: "music/Cycerin - Winterbliss.mp3" },
+        { name: "Soothing Piano", file: "music/The Most Beautiful & Relaxing Piano Pieces (Vol. 1) [WJ3-F02-F_Y].f616.mp4" }
+      ],
+      "Favorites": [
+        { name: "Dance of the Violins", file: "music/F-777 - Dance of The Violins [1fu3Q1giB94].mp4" },
+        { name: "Empire (slowed)", file: "music/Empire slowed.mp3" },
+        { name: "Paper Rings", file: "music/Taylor Swift - Paper Rings (Official Audio).mp3" },
+        { name: "Fjord of Winds", file: "music/Fjord of Winds.mp3" },
+        { name: "Chess Type Beat", file: "music/Chess Type Beat.mp3" }
+      ],
+      "Kirby/Remix": [
+        { name: "Meta Knight Battle Remake", file: "music/Meta Knight Battle Remake.mp3" },
+        { name: "Kirby - Gourmet Race Remix", file: "music/Kirby - Gourmet Race remix.mp3" },
+        { name: "Waluigi Pinball", file: "music/Waluigi pinball.mp3" }
+      ],
+      "Unavailable": [
+        { name: "IMTTJ", file: "" },
+        { name: "I'm always mean to the jews", file: "" }
+      ]
+    };
 
-    function playTrack(index) {
-      const player = document.getElementById("player");
-      player.src = tracks[index].file;
-      player.play();
+    function loadFolder(folder) {
+      folderName.textContent = folder;
+      trackGrid.innerHTML = "";
+      const tracks = library[folder];
 
-      document.getElementById("sourceInfo").innerHTML =
-        `Now playing: <b>${tracks[index].name}</b><br>Source: ${tracks[index].source}`;
+      tracks.forEach(track => {
+        const card = document.createElement("div");
+        card.className = "track";
+        card.innerText = track.name;
+        card.onclick = () => {
+          if (!track.file) {
+            alert("❌ This track isn't downloaded yet.");
+            return;
+          }
+          player.src = track.file;
+          player.play();
+        };
+        trackGrid.appendChild(card);
+      });
     }
   </script>
 
 </body>
 </html>
- 
