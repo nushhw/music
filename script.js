@@ -30,7 +30,7 @@ const library = {
     { name: "I'm always mean to the jews", file: "" }
   ],
   "Hidden": [
-    { name: "BITE ME", file: "music/3_BM.mpeg" } /* do not remove this entry */
+    { name: "BITE ME", file: "music/3_BM.mpeg" } // do not remove this entry
   ]
 };
 
@@ -43,6 +43,7 @@ function loadFolder(folder) {
   tracks.forEach(track => {
     const card = document.createElement("div");
     card.className = "track";
+    card.style.position = "relative"; // Anchor for menu
 
     const title = document.createElement("div");
     title.innerText = track.name;
@@ -52,28 +53,35 @@ function loadFolder(folder) {
     menuBtn.style.cssText = "float: right; cursor: pointer; font-size: 20px;";
 
     const menu = document.createElement("div");
-    menu.style.cssText = "display: none; position: absolute; background: #222; color: #fff; padding: 6px; border: 1px solid #555; border-radius: 5px; z-index: 999;";
+    menu.className = "menu";
+    menu.style.cssText = `
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 10px;
+      background: #222;
+      color: #fff;
+      padding: 6px 12px;
+      border: 1px solid #555;
+      border-radius: 6px;
+      z-index: 999;
+      box-shadow: 0 0 10px #000;
+    `;
 
     if (folder !== "🎿 My Playlist") {
       menu.innerHTML = "<div class='menu-add' style='cursor:pointer;'>Add to My Playlist</div>";
       menu.querySelector(".menu-add").onclick = () => {
         myPlaylist.push(track);
-        alert(`✅ Added \"${track.name}\" to your playlist!`);
+        alert(`✅ Added "${track.name}" to your playlist!`);
         menu.style.display = "none";
       };
     }
 
     menuBtn.onclick = (e) => {
-  e.stopPropagation();
-  document.querySelectorAll('.menu').forEach(m => m.style.display = "none");
-  menu.style.display = "block";
-
-  const rect = menuBtn.getBoundingClientRect();
-  menu.style.position = "absolute";
-  menu.style.left = rect.left + "px";
-  menu.style.top = rect.bottom + "px";
-};
-
+      e.stopPropagation();
+      document.querySelectorAll('.menu').forEach(m => m.style.display = "none");
+      menu.style.display = "block";
+    };
 
     card.onclick = () => {
       if (!track.file) {
@@ -88,7 +96,6 @@ function loadFolder(folder) {
     card.appendChild(title);
     card.appendChild(menuBtn);
     card.appendChild(menu);
-    menu.classList.add("menu");
     trackGrid.appendChild(card);
   });
 }
