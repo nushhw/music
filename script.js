@@ -8,26 +8,22 @@ let myPlaylist = [];
 
 const library = {
   "Item Asylum": [
-    { name: "Baseplate by Aden Mayo", file: "music/Baseplate by Aden Mayo.mp3" },
-    { name: "The Great Strategy", file: "music/The Great Strategy.mp3" },
-    { name: "Filibuster Invasion Theme", file: "" }
+    { name: "Baseplate by Aden Mayo", file: "music/Baseplate - Item Asylum [b2KdyuqGMkc].mp4" },
+    { name: "The Great Strategy", file: "music/The Great Strategy (2005) Roblox Theme 2006 [QC4UKsoQqyY].mp4" },
   ],
   "Lofi": [
     { name: "Study Lofi", file: "music/lofi hip hop mix radio-beat to relax⧸study too[10 min] [NsImQYDW8IA].mp4" },
-    { name: "Cycerin - Winterbliss", file: "music/Cycerin - Winterbliss.mp3" },
-    { name: "Soothing Piano", file: "music/The Most Beautiful & Relaxing Piano Pieces (Vol. 1) [WJ3-F02-F_Y].f616.mp4" }
+    { name: "Cycerin - Winterbliss", file: "music/cycerin - Winterbliss [FvfF2c1amLY].mp4" },
+    { name: "Soothing Piano", file: "The Most Beautiful & Relaxing Piano Pieces (Vol. 1) [WJ3-F02-F_Y].f616.mp4.part" }
   ],
   "Favorites": [
     { name: "Dance of the Violins", file: "music/F-777 - Dance of The Violins [1fu3Q1giB94].mp4" },
-    { name: "Empire (slowed)", file: "music/Empire slowed.mp3" },
     { name: "Paper Rings", file: "music/Taylor Swift - Paper Rings (Official Audio).mp3" },
-    { name: "Fjord of Winds", file: "music/Fjord of Winds.mp3" },
-    { name: "Chess Type Beat", file: "music/Chess Type Beat.mp3" }
+    { name: "Fjord of Winds", file: "music/Fjord of Winds (Metal Remix) [scI3AwqLAHA].mp4" },
+    { name: "Chess Type Beat", file: "Chess Type Beat ｜ joyful - chess (slowed) [JikhhOsY8KQ].mp4" }
   ],
   "Kirby/Remix": [
-    { name: "Meta Knight Battle Remake", file: "music/Meta Knight Battle Remake.mp3" },
-    { name: "Kirby - Gourmet Race Remix", file: "music/Kirby - Gourmet Race remix.mp3" },
-    { name: "Waluigi Pinball", file: "music/Waluigi pinball.mp3" }
+    { name: "Waluigi Pinball", file: "music/DS Wario Stadium ⧸ DS Waluigi Pinball - Mario Kart 8 Deluxe OST [GdaX5iX0ZaU].mp4" }
   ],
   "Unavailable": [
     { name: "IMTTJ", file: "" },
