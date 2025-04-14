@@ -78,14 +78,34 @@
       color: #000;
     }
 
-    audio {
-      position: absolute;
-      bottom: 10px;
-      left: 240px;
-      width: 70%;
-      box-shadow: 0 0 10px #faff70;
+    .player-bar {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #181818;
+      border: 2px solid #faff70;
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 0 15px #faff70;
+      z-index: 1000;
     }
 
+    .player-bar audio {
+      width: 240px;
+    }
+
+    .track-info {
+      color: #faff70;
+      font-size: 14px;
+      text-shadow: 0 0 5px #faff70;
+      max-width: 200px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   </style>
 </head>
 <body>
@@ -104,17 +124,22 @@
     <div class="track-grid" id="trackGrid"></div>
   </div>
 
-  <audio id="player" controls></audio>
+  <!-- Player Panel -->
+  <div class="player-bar" id="playerBar">
+    <div class="track-info" id="nowPlaying">🎶 Now playing: None</div>
+    <audio id="player" controls></audio>
+  </div>
 
   <script>
     const player = document.getElementById("player");
     const folderName = document.getElementById("folderName");
     const trackGrid = document.getElementById("trackGrid");
+    const nowPlaying = document.getElementById("nowPlaying");
 
     const library = {
       "Item Asylum": [
-        { name: "Baseplate by Aden Mayo", file: "music/Baseplate - Item Asylum [b2KdyuqGMkc].mp4" },
-        { name: "The Great Strategy", file: "music/The Great Strategy (2005) Roblox Theme 2006 [QC4UKsoQqyY].mp4" },
+        { name: "Baseplate by Aden Mayo", file: "music/Baseplate by Aden Mayo.mp3" },
+        { name: "The Great Strategy", file: "music/The Great Strategy.mp3" },
         { name: "Filibuster Invasion Theme", file: "" }
       ],
       "Lofi": [
@@ -156,6 +181,7 @@
           }
           player.src = track.file;
           player.play();
+          nowPlaying.textContent = "🎶 Now playing: " + track.name;
         };
         trackGrid.appendChild(card);
       });
