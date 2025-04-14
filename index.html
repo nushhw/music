@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MP3 Study Music Player</title>
+  <title>MP4 Study Music Player</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -24,6 +24,12 @@
       margin-top: 20px;
       width: 80%;
     }
+
+    #sourceInfo {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
   </style>
 </head>
 <body>
@@ -31,27 +37,31 @@
   <h1>🎵 Study Music Player</h1>
 
   <button onclick="playTrack(0)">Yay!</button>
-  <button onclick="playTrack(1)">Lofi</button>
-  <button onclick="playTrack(2)">Piano Calm</button>
+  <button onclick="playTrack(1)">Study Lofi</button>
+  <button onclick="playTrack(2)">Soothing Piano</button>
 
   <br>
-<audio id="player" controls>
-  <source src="focus.mp4" type="audio/mp4">
-  Your browser does not support the audio element.
-</audio>
+  <audio id="player" controls>
+    <source src="lofi.mp4" type="audio/mp4">
+    Your browser does not support the audio element.
+  </audio>
 
+  <div id="sourceInfo">Now playing: <b>Lofi Chill</b><br>Source: YouTube</div>
 
   <script>
     const tracks = [
-      "F-777 - Dance of The Violins [1fu3Q1giB94].mp4",
-      "lofi hip hop mix radio-beat to relax⧸study too[10 min] [NsImQYDW8IA].mp4",
-      "The Most Beautiful & Relaxing Piano Pieces (Vol. 1) [WJ3-F02-F_Y].f616.mp4.part"
+      { name: "Dance of the violins", file: "F-777 - Dance of The Violins [1fu3Q1giB94].mp4", source: "Dance of the violins, yt" },
+      { name: "Study Lofi", file: "rain.mp4", source: "yt" },
+      { name: "Soothing Piano", file: "The Most Beautiful & Relaxing Piano Pieces (Vol. 1) [WJ3-F02-F_Y].f616.mp4", source: "yt" }
     ];
 
     function playTrack(index) {
       const player = document.getElementById("player");
-      player.src = tracks[index];
+      player.src = tracks[index].file;
       player.play();
+
+      document.getElementById("sourceInfo").innerHTML =
+        `Now playing: <b>${tracks[index].name}</b><br>Source: ${tracks[index].source}`;
     }
   </script>
 
