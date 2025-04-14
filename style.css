@@ -66,9 +66,26 @@ h1 {
   cursor: pointer;
   transition: 0.3s;
   text-align: center;
-  position: relative;
   box-shadow: 0 0 10px #faff70 inset;
+  position: relative;
 }
+.track-menu {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background: #222;
+  color: #fff;
+  padding: 6px 12px;
+  border: 1px solid #555;
+  border-radius: 6px;
+  z-index: 999;
+  box-shadow: 0 0 10px #000;
+}
+.track-menu div:hover {
+  background: #444;
+}
+
 
 .track:hover {
   background: #faff70;
