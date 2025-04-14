@@ -1,44 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MP4 Study Music Player</title>
+  <title>Neon Study Music Player</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0a0a0a;
+      color: #faff70;
       text-align: center;
       padding: 40px;
     }
 
     h1 {
-      color: #333;
+      font-size: 2.5em;
+      text-shadow: 0 0 10px #faff70, 0 0 20px #faff70;
     }
 
     button {
-      margin: 5px;
-      padding: 10px 20px;
+      background-color: transparent;
+      border: 2px solid #faff70;
+      color: #faff70;
+      padding: 12px 24px;
+      margin: 8px;
       font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-shadow: 0 0 5px #faff70;
+      box-shadow: 0 0 10px #faff70 inset;
+    }
+
+    button:hover {
+      background-color: #faff70;
+      color: #000;
+      box-shadow: 0 0 20px #faff70, 0 0 40px #faff70 inset;
     }
 
     audio {
       margin-top: 20px;
       width: 80%;
+      filter: drop-shadow(0 0 10px #faff70);
     }
 
     #sourceInfo {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #555;
+      margin-top: 20px;
+      font-size: 16px;
+      color: #faff70;
+      text-shadow: 0 0 5px #faff70;
     }
   </style>
 </head>
 <body>
 
-  <h1>🎵 Study Music Player</h1>
+  <h1>🎧 Neon Study Music</h1>
 
-  <button onclick="playTrack(0)">Yay!</button>
+  <button onclick="playTrack(0)">Nice Music</button>
   <button onclick="playTrack(1)">Study Lofi</button>
-  <button onclick="playTrack(2)">Soothing Piano</button>
+  <button onclick="playTrack(2)">Soothing Piano (U/C)</button>
 
   <br>
   <audio id="player" controls>
