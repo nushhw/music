@@ -103,3 +103,7 @@ h1 {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.track {
+  position: relative;
+}
+
