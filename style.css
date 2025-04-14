@@ -123,4 +123,6 @@ h1 {
 .track {
   position: relative;
 }
-
+.menu div:hover {
+  background-color: #444;
+}
