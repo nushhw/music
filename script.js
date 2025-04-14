@@ -81,7 +81,7 @@ function loadFolder(folder) {
     card.appendChild(title);
     card.appendChild(menuBtn);
     card.appendChild(menu);
-    card.classList.add("menu");
+    menu.classList.add("menu");
     trackGrid.appendChild(card);
   });
 }
