@@ -37,6 +37,7 @@ const library = {
 function loadFolder(folder) {
   folderName.textContent = folder;
   trackGrid.innerHTML = "";
+  document.getElementById("folderImage").style.display = "none";
 
   const tracks = folder === "🎿 My Playlist" ? myPlaylist : (library[folder] || []);
 
