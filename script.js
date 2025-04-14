@@ -29,14 +29,13 @@ const library = {
     { name: "IMTTJ", file: "" },
     { name: "I'm always mean to the jews", file: "" }
   ],
-  "🎿 My Playlist": myPlaylist
 };
 
 function loadFolder(folder) {
   folderName.textContent = folder;
   trackGrid.innerHTML = "";
 
-  const tracks = folder === "🎿 My Playlist" ? myPlaylist : library[folder];
+  const tracks = folder === "🎿 My Playlist" ? myPlaylist : (library[folder] || []);
 
   tracks.forEach(track => {
     const card = document.createElement("div");
