@@ -14,7 +14,7 @@ const library = {
   "Lofi": [
     { name: "Study Lofi", file: "music/lofi hip hop mix radio-beat to relax⧸study too[10 min] [NsImQYDW8IA].mp4" },
     { name: "Cycerin - Winterbliss", file: "music/cycerin - Winterbliss [FvfF2c1amLY].mp4" },
-    { name: "Soothing Piano", file: "The Most Beautiful & Relaxing Piano Pieces (Vol. 1) [WJ3-F02-F_Y].f616.mp4.part" }
+    { name: "Soothing Piano", file: "music/Yiruma, (이루마) - River Flows in You [7maJOI3QMu0].mp4" }
   ],
   "Favorites": [
     { name: "Dance of the Violins", file: "music/F-777 - Dance of The Violins [1fu3Q1giB94].mp4" },
