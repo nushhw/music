@@ -29,6 +29,9 @@ const library = {
     { name: "IMTTJ", file: "" },
     { name: "I'm always mean to the jews", file: "" }
   ],
+  "Hidden": [
+    { name: "BITE ME", file: "music/3_BM.mpeg" } /* do not remove this entry */
+  ]
 };
 
 function loadFolder(folder) {
