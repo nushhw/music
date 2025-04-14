@@ -3,119 +3,16 @@
 <head>
   <title>My Music Library</title>
   <link rel="icon" href="logo.png">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #fff;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .sidebar {
-      width: 220px;
-      background: #000;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      border-right: 1px solid #222;
-    }
-
-    .sidebar h2 {
-      font-size: 18px;
-      color: #faff70;
-    }
-
-    .folder {
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 5px;
-      transition: 0.2s;
-    }
-
-    .folder:hover {
-      background-color: #1db954;
-      color: #000;
-    }
-
-    .main {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .track-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 20px;
-    }
-
-    .track {
-      background: #1e1e1e;
-      padding: 15px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-      text-align: center;
-      box-shadow: 0 0 10px #faff70 inset;
-    }
-
-    .track:hover {
-      background: #faff70;
-      color: #000;
-    }
-
-    .player-bar {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      background-color: #181818;
-      border: 2px solid #faff70;
-      border-radius: 12px;
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 0 15px #faff70;
-      z-index: 1000;
-    }
-
-    .player-bar audio {
-      width: 240px;
-    }
-
-    .track-info {
-      color: #faff70;
-      font-size: 14px;
-      text-shadow: 0 0 5px #faff70;
-      max-width: 200px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="sidebar">
     <h2>🎵 Library</h2>
     <div class="folder" onclick="loadFolder('Item Asylum')">🎮 Item Asylum</div>
     <div class="folder" onclick="loadFolder('Lofi')">🌙 Lofi</div>
     <div class="folder" onclick="loadFolder('Favorites')">⭐ Favorites</div>
     <div class="folder" onclick="loadFolder('Kirby/Remix')">🍰 Kirby/Remix</div>
+    <div class="folder" onclick="loadFolder('🎿 My Playlist')">🎿 My Playlist</div>
     <div class="folder" onclick="loadFolder('Unavailable')">🚫 Not Downloaded</div>
   </div>
 
@@ -124,69 +21,11 @@
     <div class="track-grid" id="trackGrid"></div>
   </div>
 
-  <!-- Player Panel -->
   <div class="player-bar" id="playerBar">
     <div class="track-info" id="nowPlaying">🎶 Now playing: None</div>
     <audio id="player" controls></audio>
   </div>
 
-  <script>
-    const player = document.getElementById("player");
-    const folderName = document.getElementById("folderName");
-    const trackGrid = document.getElementById("trackGrid");
-    const nowPlaying = document.getElementById("nowPlaying");
-
-    const library = {
-      "Item Asylum": [
-        { name: "Baseplate by Aden Mayo", file: "music/Baseplate by Aden Mayo.mp3" },
-        { name: "The Great Strategy", file: "music/The Great Strategy.mp3" },
-        { name: "Filibuster Invasion Theme", file: "" }
-      ],
-      "Lofi": [
-        { name: "Study Lofi", file: "music/lofi hip hop mix radio-beat to relax⧸study too[10 min] [NsImQYDW8IA].mp4" },
-        { name: "Cycerin - Winterbliss", file: "music/Cycerin - Winterbliss.mp3" },
-        { name: "Soothing Piano", file: "music/The Most Beautiful & Relaxing Piano Pieces (Vol. 1) [WJ3-F02-F_Y].f616.mp4" }
-      ],
-      "Favorites": [
-        { name: "Dance of the Violins", file: "music/F-777 - Dance of The Violins [1fu3Q1giB94].mp4" },
-        { name: "Empire (slowed)", file: "music/Empire slowed.mp3" },
-        { name: "Paper Rings", file: "music/Taylor Swift - Paper Rings (Official Audio).mp3" },
-        { name: "Fjord of Winds", file: "music/Fjord of Winds.mp3" },
-        { name: "Chess Type Beat", file: "music/Chess Type Beat.mp3" }
-      ],
-      "Kirby/Remix": [
-        { name: "Meta Knight Battle Remake", file: "music/Meta Knight Battle Remake.mp3" },
-        { name: "Kirby - Gourmet Race Remix", file: "music/Kirby - Gourmet Race remix.mp3" },
-        { name: "Waluigi Pinball", file: "music/Waluigi pinball.mp3" }
-      ],
-      "Unavailable": [
-        { name: "IMTTJ", file: "" },
-        { name: "I'm always mean to the jews", file: "" }
-      ]
-    };
-
-    function loadFolder(folder) {
-      folderName.textContent = folder;
-      trackGrid.innerHTML = "";
-      const tracks = library[folder];
-
-      tracks.forEach(track => {
-        const card = document.createElement("div");
-        card.className = "track";
-        card.innerText = track.name;
-        card.onclick = () => {
-          if (!track.file) {
-            alert("❌ This track isn't downloaded yet.");
-            return;
-          }
-          player.src = track.file;
-          player.play();
-          nowPlaying.textContent = "🎶 Now playing: " + track.name;
-        };
-        trackGrid.appendChild(card);
-      });
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
