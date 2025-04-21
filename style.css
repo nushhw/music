@@ -1,5 +1,11 @@
 /* style.css */
 
+:root {
+  --highlight-color: #faff70;
+  --accent-color: #1db954;
+  --contrast-color: #000000;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -37,9 +43,14 @@ body {
   transition: 0.2s;
 }
 
-.folder:hover {
+.folder:not(.active):hover {
   background-color: #1db954;
   color: #000;
+}
+
+.folder.active {
+  background-color: var(--highlight-color);
+  color: var(--contrast-color);
 }
 
 .main {
