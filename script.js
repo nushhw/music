@@ -35,6 +35,13 @@ const library = {
 };
 
 function loadFolder(folder) {
+  const menuBtn = document.querySelector(`.folder[data-list="${folder}"]`);
+  let activeFolders = document.querySelectorAll(".folder.active");
+  for (btn of activeFolders) {
+    btn.classList.remove("active");
+  }
+  menuBtn.classList.add("active");
+  
   folderName.textContent = folder;
   trackGrid.innerHTML = "";
   const folderImage = document.getElementById("folderImage");
