@@ -1,5 +1,5 @@
-// === script.js ===
-const player = document.getElementById("player");
+// === script.js (YouTube Embed Version) ===
+const playerEmbed = document.getElementById("playerEmbed");
 const folderName = document.getElementById("folderName");
 const trackGrid = document.getElementById("trackGrid");
 const nowPlaying = document.getElementById("nowPlaying");
@@ -8,41 +8,51 @@ let myPlaylist = [];
 
 const library = {
   "Item Asylum": [
-    { name: "Baseplate by Aden Mayo", file: "music/Baseplate - Item Asylum [b2KdyuqGMkc].mp4" },
-    { name: "The Great Strategy", file: "music/The Great Strategy (2005) Roblox Theme 2006 [QC4UKsoQqyY].mp4" },
+    { name: "Baseplate by Aden Mayo", file: "b2KdyuqGMkc" },
+    { name: "The Great Strategy", file: "QC4UKsoQqyY" }
   ],
   "Lofi": [
-    { name: "Study Lofi", file: "music/lofi hip hop mix radio-beat to relax⧸study too[10 min] [NsImQYDW8IA].mp4" },
-    { name: "Cycerin - Winterbliss", file: "music/cycerin - Winterbliss [FvfF2c1amLY].mp4" },
-    { name: "Soothing Piano", file: "The Most Beautiful & Relaxing Piano Pieces (Vol. 1) [WJ3-F02-F_Y].f616.mp4.part" }
+    { name: "Study Lofi", file: "NsImQYDW8IA" },
+    { name: "Cycerin - Winterbliss", file: "FvfF2c1amLY" },
+    { name: "Soothing Piano", file: "7maJOI3QMu0" }
   ],
   "Favorites": [
-    { name: "Dance of the Violins", file: "music/F-777 - Dance of The Violins [1fu3Q1giB94].mp4" },
-    { name: "Paper Rings", file: "music/Taylor Swift - Paper Rings (Official Audio).mp3" },
-    { name: "Fjord of Winds", file: "music/Fjord of Winds (Metal Remix) [scI3AwqLAHA].mp4" },
-    { name: "Chess Type Beat", file: "Chess Type Beat ｜ joyful - chess (slowed) [JikhhOsY8KQ].mp4" }
+    { name: "Dance of the Violins", file: "1fu3Q1giB94" },
+    { name: "Paper Rings", file: "exampleAudioId" },
+    { name: "Fjord of Winds", file: "scI3AwqLAHA" },
+    { name: "Chess Type Beat", file: "JikhhOsY8KQ" }
   ],
   "Kirby/Remix": [
-    { name: "Waluigi Pinball", file: "music/DS Wario Stadium ⧸ DS Waluigi Pinball - Mario Kart 8 Deluxe OST [GdaX5iX0ZaU].mp4" }
+    { name: "Waluigi Pinball", file: "GdaX5iX0ZaU" }
   ],
   "Unavailable": [
     { name: "IMTTJ", file: "" },
     { name: "I'm always mean to the jews", file: "" }
   ],
   "Hidden": [
-    { name: "BITE ME", file: "music/3_BM.mpeg" } /* do not remove this entry */
+    { name: "BITE ME", file: "exampleHiddenId" }
   ]
 };
 
 function loadFolder(folder) {
+  const menuBtn = document.querySelector(`.folder[data-list="${folder}"]`);
+  let activeFolders = document.querySelectorAll(".folder.active");
+  for (btn of activeFolders) {
+    btn.classList.remove("active");
+  }
+  menuBtn.classList.add("active");
+  
   folderName.textContent = folder;
   trackGrid.innerHTML = "";
+  const folderImage = document.getElementById("folderImage");
+  if (folderImage) folderImage.style.display = "none";
 
   const tracks = folder === "🎿 My Playlist" ? myPlaylist : (library[folder] || []);
 
   tracks.forEach(track => {
     const card = document.createElement("div");
     card.className = "track";
+    card.style.position = "relative";
 
     const title = document.createElement("div");
     title.innerText = track.name;
@@ -52,7 +62,20 @@ function loadFolder(folder) {
     menuBtn.style.cssText = "float: right; cursor: pointer; font-size: 20px;";
 
     const menu = document.createElement("div");
-    menu.style.cssText = "display: none; position: absolute; background: #222; color: #fff; padding: 6px; border: 1px solid #555; border-radius: 5px; z-index: 999;";
+    menu.className = "menu";
+    menu.style.cssText = `
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 10px;
+      background: #222;
+      color: #fff;
+      padding: 6px 12px;
+      border: 1px solid #555;
+      border-radius: 6px;
+      z-index: 999;
+      box-shadow: 0 0 10px #000;
+    `;
 
     if (folder !== "🎿 My Playlist") {
       menu.innerHTML = "<div class='menu-add' style='cursor:pointer;'>Add to My Playlist</div>";
@@ -67,8 +90,6 @@ function loadFolder(folder) {
       e.stopPropagation();
       document.querySelectorAll('.menu').forEach(m => m.style.display = "none");
       menu.style.display = "block";
-      menu.style.left = e.pageX + "px";
-      menu.style.top = e.pageY + "px";
     };
 
     card.onclick = () => {
@@ -76,15 +97,14 @@ function loadFolder(folder) {
         alert("❌ This track isn't downloaded yet.");
         return;
       }
-      player.src = track.file;
-      player.play();
+      playerEmbed.style.display = "block";
+      playerEmbed.src = `https://www.youtube.com/embed/${track.file}?autoplay=1&controls=0`;
       nowPlaying.textContent = "🎶 Now playing: " + track.name;
     };
 
     card.appendChild(title);
     card.appendChild(menuBtn);
     card.appendChild(menu);
-    menu.classList.add("menu");
     trackGrid.appendChild(card);
   });
 }

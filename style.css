@@ -1,5 +1,11 @@
 /* style.css */
 
+:root {
+  --highlight-color: #faff70;
+  --accent-color: #1db954;
+  --contrast-color: #000000;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -37,9 +43,14 @@ body {
   transition: 0.2s;
 }
 
-.folder:hover {
+.folder:not(.active):hover {
   background-color: #1db954;
   color: #000;
+}
+
+.folder.active {
+  background-color: var(--highlight-color);
+  color: var(--contrast-color);
 }
 
 .main {
@@ -66,9 +77,26 @@ h1 {
   cursor: pointer;
   transition: 0.3s;
   text-align: center;
-  position: relative;
   box-shadow: 0 0 10px #faff70 inset;
+  position: relative;
 }
+.track-menu {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 10px;
+  background: #222;
+  color: #fff;
+  padding: 6px 12px;
+  border: 1px solid #555;
+  border-radius: 6px;
+  z-index: 999;
+  box-shadow: 0 0 10px #000;
+}
+.track-menu div:hover {
+  background: #444;
+}
+
 
 .track:hover {
   background: #faff70;
@@ -102,4 +130,10 @@ h1 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.track {
+  position: relative;
+}
+.menu div:hover {
+  background-color: #444;
 }
