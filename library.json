@@ -1,0 +1,56 @@
+{
+    "categories": {
+        "1": {
+            "name": "Item Asylum",
+            "defaultHidden": false,
+            "logo": { "char": "🎮" }
+        },
+        "2": {
+            "name": "Lofi",
+            "defaultHidden": false,
+            "logo": { "char": "🌙" }
+        },
+        "3": {
+            "name": "Favorites",
+            "defaultHidden": false,
+            "logo": { "char": "⭐" }
+        },
+        "4": {
+            "name": "Kirby/Remix",
+            "defaultHidden": false,
+            "logo": { "char": "🍰" }
+        },
+        "5": {
+            "name": "Murder Drones",
+            "defaultHidden": false,
+            "mainArtist": ["AJ DiSpirito"],
+            "logo": { "url": "https://static.wikia.nocookie.net/5a4c6120-3595-4496-8cd2-fcb40e8c31e3/" }
+        },
+        "6": {
+            "name": "TADC",
+            "defaultHidden": true,
+            "mainArtist": ["Gooseworx", "Evan Alderete"],
+            "logo": { "char": "" }
+        },
+        "unsupported": {
+            "name": "Currently Unavailable",
+            "defaultHidden": true,
+            "forcedHidden": true,
+            "logo": { "char": "" }
+        }
+    },
+    "tracks": [
+        { "name": "Baseplate", "id": "1", "numId": 1, "file": "mp4", "cat": [1], "mainArtist": ["Aden Mayo"] },
+        { "name": "The Great Strategy", "id": "2", "numId": 2, "file": "mp4", "cat": [1] },
+        { "name": "Study Lofi", "id": "3", "numId": 3, "file": "mp4", "cat": [2] },
+        { "name": "Cycerin - Winterbliss", "id": "4", "numId": 4, "file": "mp4", "cat": [2] },
+        { "name": "Dance of the Violins", "id": "6", "numId": 6, "file": "mp4", "cat": [3] },
+        { "name": "Paper Rings", "id": "7", "numId": 7, "file": "mp3", "cat": [3] },
+        { "name": "Fjord of Winds", "id": "8", "numId": 8, "file": "mp4", "cat": [3] },
+        { "name": "Chess Type Beat", "file": "mp4", "cat": [3] },
+        { "name": "Waluigi Pinball", "id": "10", "numId": 10, "file": "mp4", "cat": [4] },
+        { "name": "IMTTJ", "file": "", "notReady": true, "cat": ["unsupported"] },
+        { "name": "I'm always mean to the jews", "file": "", "notReady": true, "cat": ["unsupported"] },
+        { "name": "BITE ME", "id": "0", "numId": 0, "file": "music/3_BM.mpeg", "cat": [5], "featArtist": ["Zephyrianna"] }
+    ]
+}
