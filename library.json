@@ -40,17 +40,17 @@
         }
     },
     "tracks": [
-        { "name": "Baseplate", "id": "1", "numId": 1, "file": "mp4", "cat": [1], "mainArtist": ["Aden Mayo"] },
-        { "name": "The Great Strategy", "id": "2", "numId": 2, "file": "mp4", "cat": [1] },
-        { "name": "Study Lofi", "id": "3", "numId": 3, "file": "mp4", "cat": [2] },
-        { "name": "Cycerin - Winterbliss", "id": "4", "numId": 4, "file": "mp4", "cat": [2] },
-        { "name": "Dance of the Violins", "id": "6", "numId": 6, "file": "mp4", "cat": [3] },
+        { "name": "Baseplate", "id": "1", "numId": 1, "file": "m4a", "cat": [1], "mainArtist": ["Aden Mayo"] },
+        { "name": "The Great Strategy", "id": "2", "numId": 2, "file": "m4a", "cat": [1] },
+        { "name": "Study Lofi", "id": "3", "numId": 3, "file": "m4a", "cat": [2] },
+        { "name": "Cycerin - Winterbliss", "id": "4", "numId": 4, "file": "m4a", "cat": [2] },
+        { "name": "Dance of the Violins", "id": "6", "numId": 6, "file": "m4a", "cat": [3] },
         { "name": "Paper Rings", "id": "7", "numId": 7, "file": "mp3", "cat": [3] },
-        { "name": "Fjord of Winds", "id": "8", "numId": 8, "file": "mp4", "cat": [3] },
-        { "name": "Chess Type Beat", "file": "mp4", "cat": [3] },
-        { "name": "Waluigi Pinball", "id": "10", "numId": 10, "file": "mp4", "cat": [4] },
+        { "name": "Fjord of Winds", "id": "8", "numId": 8, "file": "m4a", "cat": [3] },
+        { "name": "Chess Type Beat", "file": "m4a", "cat": [3], "notReady": true },
+        { "name": "Waluigi Pinball", "id": "10", "numId": 10, "file": "m4a", "cat": [4] },
         { "name": "IMTTJ", "file": "", "notReady": true, "cat": ["unsupported"] },
         { "name": "I'm always mean to the jews", "file": "", "notReady": true, "cat": ["unsupported"] },
-        { "name": "BITE ME", "id": "0", "numId": 0, "file": "music/3_BM.mpeg", "cat": [5], "featArtist": ["Zephyrianna"] }
+        { "name": "BITE ME", "id": "0", "numId": 0, "file": "mpeg", "cat": [5], "featArtist": ["Zephyrianna"] }
     ]
 }
