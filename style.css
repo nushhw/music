@@ -216,6 +216,7 @@ body {
   background-image: url(./assets/play.png);
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 }
 
 .play-pause-button.display-pause {

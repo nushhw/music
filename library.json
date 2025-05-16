@@ -44,13 +44,14 @@
         { "name": "The Great Strategy", "id": "2", "numId": 2, "file": "m4a", "cat": [1] },
         { "name": "Study Lofi", "id": "3", "numId": 3, "file": "m4a", "cat": [2] },
         { "name": "Cycerin - Winterbliss", "id": "4", "numId": 4, "file": "m4a", "cat": [2] },
+        { "name": "Soothing Piano", "id": "5", "numId": 5, "file": "m4a", "cat": [2] },
         { "name": "Dance of the Violins", "id": "6", "numId": 6, "file": "m4a", "cat": [3] },
-        { "name": "Paper Rings", "id": "7", "numId": 7, "file": "mp3", "cat": [3] },
+        { "name": "Paper Rings", "id": "7", "numId": 7, "file": "m4a", "cat": [3] },
         { "name": "Fjord of Winds", "id": "8", "numId": 8, "file": "m4a", "cat": [3] },
-        { "name": "Chess Type Beat", "file": "m4a", "cat": [3], "notReady": true },
+        { "name": "Chess Type Beat", "id": "9", "numID": 9, "file": "m4a", "cat": [3] },
         { "name": "Waluigi Pinball", "id": "10", "numId": 10, "file": "m4a", "cat": [4] },
         { "name": "IMTTJ", "file": "", "notReady": true, "cat": ["unsupported"] },
         { "name": "I'm always mean to the jews", "file": "", "notReady": true, "cat": ["unsupported"] },
-        { "name": "BITE ME", "id": "0", "numId": 0, "file": "mpeg", "cat": [5], "featArtist": ["Zephyrianna"] }
+        { "name": "BITE ME", "id": "0", "numId": 0, "file": "mp3", "cat": [5], "featArtist": ["Zephyrianna"] }
     ]
 }

@@ -238,11 +238,15 @@ function loadFolder(folderID) {
         })
         .then((result) => {
           console.log(result);
+          if (!result.ok) {
+            alert(`Sorry, file cannot be found, HTTP ${result.status} ${result.statusText}. Audio cannot be fetched.`);
+            throw new Error("HTTP error");
+          }
           console.log("Received fetch result, running blob()...");
           return result.blob();
         })
         .catch((reject) => {
-          if (reject.message === "Fetch error") {
+          if (reject.message === "Fetch error" || reject.message === "HTTP error") {
             throw reject;
           }
           alert("Sorry, file error. Audio cannot be fetched.");
