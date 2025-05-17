@@ -196,7 +196,7 @@ function loadFolder(folderID) {
 
     const artist = document.createElement("div");
     artist.classList.add("track-artist");
-    let artistText = (track.mainArtist?.join(", ") || category.mainArtist?.join(", ") || "");
+    let artistText = (track.mainArtist?.join(", ") || category.mainArtist?.join(", ") || "Unknown Artist");
     let featText = (track.featArtist?.join(", ") || category.featArtist?.join(", ") || "");
     if (featText) {
       featText = `(ft. ${featText})`;
@@ -248,7 +248,8 @@ function loadFolder(folderID) {
       const srcLink = `./tracks/Tk${track.id}.${track.file.split(".").findLast(()=>true)}`;
       
       playBtn.classList.add("loading-btn");
-      
+      const audioIsPaused = player.paused;
+      pauseAudio();
       fetch(srcLink)
         .catch((reject) => {
           alert("Sorry, network error. Audio cannot be fetched.");
@@ -304,6 +305,9 @@ function loadFolder(folderID) {
         .finally(() => {
           playBtn.classList.remove("loading-btn");
           trackIsLoading = false;
+          if (!audioIsPaused) {
+            playAudio();
+          }
         });
     });
 
