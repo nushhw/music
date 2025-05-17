@@ -102,6 +102,8 @@ let myPlaylist = [];
 let jsonLibrary = null;
 let fetchConcluded = false;
 let fetchError = null;
+let blobLinks = {};
+
 
 fetch("./library.json")
   .catch((reject) => {
@@ -158,6 +160,11 @@ fetch("./library.json")
         sidebar.append(sidebarItem);
       }
     }
+
+    for (let {id} of jsonLibrary.tracks) {
+      blobLinks[id] = null;
+    }
+
   })
   .catch((reject) => {
     fetchError = reject;
@@ -242,7 +249,6 @@ function loadFolder(folderID) {
       
       playBtn.classList.add("loading-btn");
       
-
       fetch(srcLink)
         .catch((reject) => {
           alert("Sorry, network error. Audio cannot be fetched.");
@@ -273,16 +279,18 @@ function loadFolder(folderID) {
           }
           nowPlaying.textContent = "🎶 " + track.name;
           nowPlaying.classList.remove("not-playing");
-          if (objUrl) URL.revokeObjectURL(objUrl);
-          objUrl = URL.createObjectURL(result);
-          console.log(objUrl);
-          player.pause();
+          // if (objUrl) URL.revokeObjectURL(objUrl);
+          if (!blobLinks[track.id]) {
+            objUrl = URL.createObjectURL(result);
+            console.log(objUrl);
+            blobLinks[track.id] = objUrl;
+          } else {
+            objUrl = blobLinks[track.id];
+          }
           player.src = objUrl;
           player.pause();
           
-          playDur.textContent = secToFull(player.duration);
           player.currentTime = 0;
-          playTime.textContent = secToFull(0);
           playProgBar.style.backgroundImage = "linear-gradient(to right, var(--accent-color) 0% 0%, #999999 0% 100%)";
           
           
@@ -323,6 +331,13 @@ playBtn.addEventListener("click", function() {
 
   if (player.paused) playAudio();
   else pauseAudio();
+});
+
+playProgBar.addEventListener("click", function(ev) {
+  if (player.src) {
+    const ratioMoved = ev.offsetX / playProgBar.clientWidth;
+    player.currentTime = ratioMoved * player.duration;
+  }
 })
 
 setInterval(function() {

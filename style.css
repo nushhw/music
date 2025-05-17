@@ -288,6 +288,12 @@ body {
   margin: 0 9px;
   height: 5px;
   background-image: linear-gradient(to right, #999999 0% 100%, var(--accent-color) 100% 100%);
+  cursor: pointer;
+}
+
+.player-prog-bar:has(~ audio[src]):not(:has(~ audio[src=""])) {
+  /* If audio has src attribute basically */
+  cursor: pointer;
 }
 
 @media screen and (max-width: 760px) {
