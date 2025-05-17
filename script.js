@@ -12,6 +12,8 @@ const sidebarCtrl = document.querySelector("#mobile-sidebar-controller");
 
 let objUrl = ""; // ObjectURL of the Blob audio
 
+let trackIsLoading = false; // prevent double-loads
+
 const secToFull = function(secs) {
   const hrs = Math.floor(secs / 3600);
   const mins = Math.floor((secs - (hrs * 60)) / 60);
@@ -223,15 +225,23 @@ function loadFolder(folderID) {
     });
 
 
-    card.onclick = () => {
+    card.addEventListener("click", () => {
       if (track.notReady) {
         alert("❌ This track isn't downloaded yet.");
         return;
       }
 
+      if (trackIsLoading) {
+        alert("Sorry, track is still loading. Please wait for the track to load.");
+        return;
+      }
+
+      trackIsLoading = true;
+
       const srcLink = `./tracks/Tk${track.id}.${track.file.split(".").findLast(()=>true)}`;
       
       playBtn.classList.add("loading-btn");
+      
 
       fetch(srcLink)
         .catch((reject) => {
@@ -275,17 +285,19 @@ function loadFolder(folderID) {
           playTime.textContent = secToFull(0);
           playProgBar.style.backgroundImage = "linear-gradient(to right, var(--accent-color) 0% 0%, #999999 0% 100%)";
           
-          playBtn.classList.remove("loading-btn");
           
           playAudio();
           return true;
         })
         .catch((reject) => {
           console.error(reject);
-          playBtn.classList.remove("loading-btn");
           return false;
+        })
+        .finally(() => {
+          playBtn.classList.remove("loading-btn");
+          trackIsLoading = false;
         });
-    };
+    });
 
     card.appendChild(title);
     card.appendChild(artist);
