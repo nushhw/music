@@ -34,7 +34,7 @@ const pauseAudio = function() {
 
 let myPlaylist = [];
 
-const library = {
+/* const library = {
   "categories": {
     "1": {
       "name": "Item Asylum",
@@ -76,7 +76,7 @@ const library = {
     "Lofi": [
       { name: "Study Lofi", id: "3", numId: 3, file: "mp4", cat: [2] },
       { name: "Cycerin - Winterbliss", id: "4", numId: 4, file: "mp4", cat: [2] },
-      /*{ name: "Soothing Piano", id: "5", numId: 5, file: "part", cat: [2] }*/
+      /*{ name: "Soothing Piano", id: "5", numId: 5, file: "part", cat: [2] }* /
     ],
     "Favorites": [
       { name: "Dance of the Violins", id: "6", numId: 6, file: "mp4", cat: [3] },
@@ -92,10 +92,10 @@ const library = {
       { name: "I'm always mean to the jews", file: "", notReady: true, cat: ["unsupported"] }
     ],
     "Hidden": [
-      { name: "BITE ME", id: "0", numId: 0, file: "music/3_BM.mpeg", cat: [5] } /* do not remove this entry */
+      { name: "BITE ME", id: "0", numId: 0, file: "music/3_BM.mpeg", cat: [5] } /* do not remove this entry * /
     ]
   }
-};
+}; */
 
 let jsonLibrary = null;
 let fetchConcluded = false;
@@ -231,6 +231,8 @@ function loadFolder(folderID) {
 
       const srcLink = `./tracks/Tk${track.id}.${track.file.split(".").findLast(()=>true)}`;
       
+      playBtn.classList.add("loading-btn");
+
       fetch(srcLink)
         .catch((reject) => {
           alert("Sorry, network error. Audio cannot be fetched.");
@@ -242,7 +244,7 @@ function loadFolder(folderID) {
             alert(`Sorry, file cannot be found, HTTP ${result.status} ${result.statusText}. Audio cannot be fetched.`);
             throw new Error("HTTP error");
           }
-          console.log("Received fetch result, running blob()...");
+          console.log("Received fetch result, running blob() (this may take a while)...");
           return result.blob();
         })
         .catch((reject) => {
@@ -273,11 +275,14 @@ function loadFolder(folderID) {
           playTime.textContent = secToFull(0);
           playProgBar.style.backgroundImage = "linear-gradient(to right, var(--accent-color) 0% 0%, #999999 0% 100%)";
           
+          playBtn.classList.remove("loading-btn");
+          
           playAudio();
           return true;
         })
         .catch((reject) => {
           console.error(reject);
+          playBtn.classList.remove("loading-btn");
           return false;
         });
     };
@@ -288,6 +293,8 @@ function loadFolder(folderID) {
     card.appendChild(menu);
     menu.classList.add("menu");
     trackGrid.appendChild(card);
+
+    sidebar.classList.remove("mobile-visible");
   });
 }
 
