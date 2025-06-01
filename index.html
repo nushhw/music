@@ -1,117 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Neon Study Music Player</title>
+  <title>My Music Library</title>
   <link rel="icon" href="logo.png">
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #0a0a0a;
-      color: #faff70;
-      margin: 0;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-    .sidebar {
-      width: 220px;
-      background: #000;
-      padding: 20px;
-      border-right: 1px solid #222;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .folder {
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 5px;
-      transition: 0.2s;
-    }
-    .folder:hover {
-      background: #1db954;
-      color: #000;
-    }
-    .main {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-    }
-    .track-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 20px;
-    }
-    .track {
-      background: #1e1e1e;
-      padding: 15px;
-      border-radius: 10px;
-      cursor: pointer;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 0 10px #faff70 inset;
-    }
-    .track:hover {
-      background: #faff70;
-      color: #000;
-    }
-    .player-bar {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      background-color: #181818;
-      border: 2px solid #faff70;
-      border-radius: 12px;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 0 15px #faff70;
-    }
-    .track-info {
-      color: #faff70;
-      font-size: 14px;
-      text-shadow: 0 0 5px #faff70;
-      max-width: 200px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-    iframe {
-      display: none;
-      border: none;
-      width: 300px;
-      height: 170px;
-      border-radius: 8px;
-    }
-  </style>
+  <link rel="preload" as="image" href="./assets/menu-close-enlarged.png">
+  <link rel="preload" as="image" href="./assets/menu-open-enlarged.png">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-
-  <div class="sidebar">
+  <div class="sidebar mobile-visible">
     <h2>🎵 Library</h2>
-    <div class="folder" data-list="Item Asylum" onclick="loadFolder('Item Asylum')">🎮 Item Asylum</div>
-    <div class="folder" data-list="Lofi" onclick="loadFolder('Lofi')">🌙 Lofi</div>
-    <div class="folder" data-list="Favorites" onclick="loadFolder('Favorites')">⭐ Favorites</div>
-    <div class="folder" data-list="Kirby/Remix" onclick="loadFolder('Kirby/Remix')">🍰 Kirby/Remix</div>
-    <div class="folder" data-list="🎿 My Playlist" onclick="loadFolder('🎿 My Playlist')">🎿 My Playlist</div>
-    <div class="folder" data-list="Unavailable" onclick="loadFolder('Unavailable')">🚫 Not Downloaded</div>
+    <!--<div class="folder" onclick="loadFolder('1')">🎮 Item Asylum</div>
+    <div class="folder" onclick="loadFolder('2')">🌙 Lofi</div>
+    <div class="folder" onclick="loadFolder('3')">⭐ Favorites</div>
+    <div class="folder" onclick="loadFolder('4')">🍰 Kirby/Remix</div>
+    <div class="folder" onclick="loadFolder('🎿 My Playlist')">🎿 My Playlist</div>
+    <div class="folder" onclick="loadFolder('unsupported')">🚫 Not Downloaded</div>-->
   </div>
 
   <div class="main">
-    <h1 id="folderName">Select a Folder</h1>
-    <img id="folderImage" src="intro.png" alt="Intro" style="width: 300px; max-width: 90%; border-radius: 12px; box-shadow: 0 0 20px #faff70; margin-bottom: 20px;">
-    <div class="track-grid" id="trackGrid"></div>
+    <header class="top-bar">
+      <div class="mobile-sidebar-controller" id="mobile-sidebar-controller">&nbsp;</div>
+      <h1 id="folderName">Select a Folder</h1>
+    </header>
+    <div class="tg-holder">
+      <div class="track-grid" id="trackGrid"></div>
+    </div>
   </div>
 
-  <div class="player-bar">
-    <div class="track-info" id="nowPlaying">🎶 Now playing: None</div>
-    <iframe id="playerEmbed"></iframe>
+  <div class="player-bar" id="playerBar">
+    <div class="track-info not-playing" id="nowPlaying">🎶 Not playing</div>
+    <div class="play-visualiser" id="mask-player">
+      <div class="play-pause-button" id="playBtn"></div>
+      <div class="play-bar">
+        <div class="player-progress">
+          &nbsp;
+          <div class="player-prog-bar"></div>
+        </div>
+        <div class="player-time-text">
+          <span id="player-time">0:00</span>&nbsp;/&nbsp;<span id="player-duration">0:00</span>
+        </div>
+      </div>
+    </div>
+    <audio id="player" controls></audio>
   </div>
-
+  <!-- Play and pause icons from Google Material Symbols under Apache 2.0 license-->
   <script src="script.js"></script>
 </body>
 </html>
