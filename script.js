@@ -206,7 +206,7 @@ function loadFolder(folderID) {
 
     const menuBtn = document.createElement("div");
     menuBtn.innerText = "⋮";
-    menuBtn.style.cssText = "float: right; cursor: pointer; font-size: 20px;";
+    menuBtn.classList.add("track-menu-btn");
 
     const menu = document.createElement("div");
     menu.style.cssText = "display: none; position: absolute; background: #222; color: #fff; padding: 6px; border: 1px solid #555; border-radius: 5px; z-index: 999;";
