@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Music Library</title>
+  <link rel="icon" href="logo.png">
+  <link rel="preload" as="image" href="./assets/menu-close-enlarged.png">
+  <link rel="preload" as="image" href="./assets/menu-open-enlarged.png">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <div class="sidebar mobile-visible">
+    <h2>NUSHMusic</h2>
+  </div>
+
+  <div class="mobile-sidebar-controller" id="mobile-sidebar-controller">&nbsp;</div>
+
+  <!-- Track Grid -->
+  <div class="main" id="track-main">
+    <header class="top-bar">
+      <div class="mobile-sidebar-controller">&nbsp;</div>
+      <h1 id="folderName">Loading...</h1>
+    </header>
+    
+    <div class="go-back-bar">
+      <div class="go-back-button">← Back</div>
+    </div>
+
+    <div class="tg-holder">
+      <div class="track-grid"></div>
+    </div>
+  </div>
+
+  <!-- Compilation Grid -->
+  <div class="main active" id="comp-main">
+    <header class="top-bar">
+      <div class="mobile-sidebar-controller">&nbsp;</div>
+      <h1 id="compInfoMainHead">Compilations</h1>
+    </header>
+
+    <div class="tg-holder">
+      <div class="track-grid">
+      </div>
+    </div>
+  </div>
+
+  <!-- Track Info Page -->
+  <div class="main" id="info-main">
+    <header class="top-bar">
+      <div class="mobile-sidebar-controller">&nbsp;</div>
+      <h1 id="trackinfoH1">Track Info</h1>
+    </header>
+
+    <div class="go-back-bar">
+      <div class="go-back-button">← Back</div>
+    </div>
+
+    <div class="track-info-content">
+      <div class="track-cover"></div>
+      <div class="track-name-info">&nbsp;</div>
+      <div class="track-artist-info">&nbsp;</div>
+
+      <div class="track-info-play-holder">
+        <div class="track-info-play">
+          <div class="track-info-play-btn">&nbsp;</div> 
+          <div class="track-info-play-text">Play</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Player Bar -->
+  <div class="player-bar" id="playerBar">
+    <div class="track-info not-playing" id="nowPlaying">🎶 Not playing</div>
+    <div class="play-visualiser" id="mask-player">
+      <div class="play-pause-button" id="playBtn"></div>
+      <div class="play-bar">
+        <div class="player-progress">
+          &nbsp;
+          <div class="player-prog-bar"></div>
+        </div>
+        <div class="player-time-text">
+          <span id="player-time">0:00</span>&nbsp;/&nbsp;<span id="player-duration">0:00</span>
+        </div>
+      </div>
+    </div>
+    <audio id="player" controls></audio>
+  </div>
+  <!-- Play and pause icons from Google Material Symbols under Apache 2.0 license-->
+  <script src="script.js"></script>
+</body>
+</html>

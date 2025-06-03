@@ -5,10 +5,36 @@
   <link rel="icon" href="logo.png">
   <link rel="preload" as="image" href="./assets/menu-close-enlarged.png">
   <link rel="preload" as="image" href="./assets/menu-open-enlarged.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="legacy.css">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Announcement banner styling --> 
+  <style>
+    .announcement-bar.enabled ~ :is(.sidebar, .main) {
+      margin-top: calc(1lh + 20px);
+      height: calc(100% - 1lh - 20px);
+    }
+
+    .announcement-bar {
+      padding: 10px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #3377FF;
+      text-align: center;
+    }
+
+    a { color: white; text-decoration-line: underline; font-weight: bold; }
+    .announcement-bar:not(.enabled) {
+      display: none;
+    }
+  </style>
 </head>
 <body>
+  <div class="announcement-bar enabled">
+    Try the new player <a href="./new.html">here</a>!
+  </div>
+
   <div class="sidebar mobile-visible">
     <h2>🎵 Library</h2>
     <!--<div class="folder" onclick="loadFolder('1')">🎮 Item Asylum</div>
@@ -46,6 +72,6 @@
     <audio id="player" controls></audio>
   </div>
   <!-- Play and pause icons from Google Material Symbols under Apache 2.0 license-->
-  <script src="script.js"></script>
+  <script src="legacy.js"></script>
 </body>
 </html>
